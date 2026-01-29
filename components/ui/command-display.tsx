@@ -26,13 +26,13 @@ export function CommandDisplay({ command, className }: CommandDisplayProps) {
   return (
     <div
       className={cn(
-        "flex items-center gap-2 rounded-lg border bg-muted/50 p-4 font-mono text-sm",
+        "flex items-center gap-2 rounded-lg border bg-muted p-4 font-mono text-sm",
         className
       )}
     >
       <code className="flex-1 select-all text-foreground">{command}</code>
       <Button
-        variant="ghost"
+
         size="icon"
         onClick={handleCopy}
         className="shrink-0"

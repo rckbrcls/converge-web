@@ -1,16 +1,43 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Github } from "lucide-react";
+import { ArrowRight, Download, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { VantaTrunkBackground } from "./VantaTrunkBackground";
 import { CommandDisplay } from "@/components/ui/command-display";
+import { Button } from "../ui/button";
 
 export function HeroSection() {
   const [chaos, setChaos] = useState(1.5);
   const installCommand = "curl -fsSL https://converge-focus.vercel.app/install | bash";
+
+  const handleScrollDown = () => {
+    if (typeof window === "undefined") return;
+
+    const startY = window.scrollY;
+    const targetY = startY + window.innerHeight;
+    const distance = targetY - startY;
+    const duration = 600;
+    const startTime = performance.now();
+
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutCubic(progress);
+
+      window.scrollTo(0, startY + distance * easedProgress);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  };
 
   return (
     <section
@@ -31,7 +58,7 @@ export function HeroSection() {
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
-            buttonVariants({ variant: "outline", size: "default" }),
+            buttonVariants({ variant: "secondary", size: "default" }),
             "inline-flex items-center gap-2"
           )}
           whileHover={{ scale: 1.05 }}
@@ -67,7 +94,12 @@ export function HeroSection() {
           onHoverStart={() => setChaos(0.2)}
           onHoverEnd={() => setChaos(1.5)}
         >
-          <CommandDisplay command={installCommand} />
+          <Button
+            className="inline-flex cursor-pointer items-center gap-2"
+            onClick={handleScrollDown}
+          >
+            Focus <ArrowRight className="size-4" />
+          </Button>
         </motion.div>
       </div>
     </section>
