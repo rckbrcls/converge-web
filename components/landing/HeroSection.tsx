@@ -1,46 +1,16 @@
 "use client";
 
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Download, Github } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { VantaTrunkBackground } from "./VantaTrunkBackground";
-
-interface ReleaseInfo {
-  url: string;
-  version?: string;
-  source?: string;
-}
+import { CommandDisplay } from "@/components/ui/command-display";
 
 export function HeroSection() {
   const [chaos, setChaos] = useState(1.5);
-  const [downloadUrl, setDownloadUrl] = useState<string | null>(
-    process.env.NEXT_PUBLIC_DMG_DOWNLOAD_URL || null
-  );
-
-  useEffect(() => {
-    // If URL is already configured, no need to fetch
-    if (process.env.NEXT_PUBLIC_DMG_DOWNLOAD_URL) {
-      return;
-    }
-
-    // Fetch latest version from API
-    fetch("/api/releases?type=latest")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        throw new Error("Failed to fetch release");
-      })
-      .then((data: ReleaseInfo) => {
-        setDownloadUrl(data.url);
-      })
-      .catch((error) => {
-        console.error("Error fetching latest release:", error);
-        // Keep current state (no URL = button disabled)
-      });
-  }, []);
+  const installCommand = "curl -fsSL https://converge-focus.vercel.app/install | bash";
 
   return (
     <section
@@ -93,41 +63,11 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
-          className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-3"
+          className="w-full max-w-2xl"
+          onHoverStart={() => setChaos(0.2)}
+          onHoverEnd={() => setChaos(1.5)}
         >
-          {downloadUrl ? (
-            <motion.div
-              className="flex shrink-0"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              onHoverStart={() => setChaos(0.2)}
-              onHoverEnd={() => setChaos(1.5)}
-            >
-              <Button asChild size="lg" variant="outline">
-                <a
-                  href={downloadUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2"
-                >
-                  <Download className="size-4" />
-                  Download for Mac
-                </a>
-              </Button>
-            </motion.div>
-          ) : (
-            <motion.div
-              className="flex shrink-0"
-              onHoverStart={() => setChaos(0.2)}
-              onHoverEnd={() => setChaos(1.5)}
-            >
-              <Button size="lg" disabled>
-                <Download className="size-4" />
-                Download coming soon
-              </Button>
-            </motion.div>
-          )}
+          <CommandDisplay command={installCommand} />
         </motion.div>
       </div>
     </section>
