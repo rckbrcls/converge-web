@@ -25,9 +25,9 @@ export function HeroSection() {
   };
 
   return (
-    <ParallaxSection id="hero" data-section="hero" backgroundComponent={<VantaTrunkBackground chaos={chaos} />}>
+    <ParallaxSection id="hero" data-section="hero" fullWidth backgroundComponent={<VantaTrunkBackground chaos={chaos} />}>
       <motion.div
-        className="absolute top-4 right-4 z-20 sm:top-6 sm:right-6"
+        className="absolute top-4 right-4 z-20 sm:top-6 sm:right-6 px-4"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}
@@ -48,7 +48,7 @@ export function HeroSection() {
           GitHub
         </motion.a>
       </motion.div>
-      <div className="relative z-10 flex flex-col items-center justify-center gap-6 text-center sm:gap-8">
+      <div className="relative z-10 flex flex-col items-center justify-center gap-6 px-4 text-center sm:gap-8">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

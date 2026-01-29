@@ -14,7 +14,9 @@ export function DownloadSection() {
     <ParallaxSection
       id="download"
       data-section="download"
-      backgroundClassName="bg-gradient-to-b from-primary/15 via-background to-background"
+      backgroundClassName="bg-gradient-to-t from-primary/10 via-background to-background"
+      parallaxOffset={0}
+      backgroundOpacity={1}
     >
       <motion.div
         initial="hidden"

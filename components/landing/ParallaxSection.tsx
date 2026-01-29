@@ -11,6 +11,7 @@ interface ParallaxSectionProps extends React.HTMLAttributes<HTMLElement> {
   backgroundClassName?: string;
   parallaxOffset?: number;
   backgroundComponent?: ReactNode;
+  fullWidth?: boolean;
   children: ReactNode;
 }
 
@@ -21,6 +22,7 @@ export function ParallaxSection({
   parallaxOffset = 80,
   className,
   backgroundComponent,
+  fullWidth = false,
   children,
   ...sectionProps
 }: ParallaxSectionProps) {
@@ -42,8 +44,9 @@ export function ParallaxSection({
     <section
       ref={sectionRef}
       className={cn(
-        "relative flex min-h-screen snap-start items-center justify-center overflow-hidden px-4 py-16",
+        "relative flex min-h-screen snap-start items-center justify-center overflow-hidden py-16",
         "sm:py-24 md:py-32",
+        !fullWidth && "px-4",
         className
       )}
       {...sectionProps}
