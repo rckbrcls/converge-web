@@ -42,11 +42,15 @@ export function DownloadSection() {
             visible: { opacity: 1, y: 0 },
           }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="mb-8 text-muted-foreground"
+          className="text-muted-foreground"
         >
-          Install Converge on macOS using the command below. The script will automatically download and install the latest version.
+            This command will automatically download and install the latest version of Converge.<br />
+          
         </motion.p>
-        <motion.div
+        <motion.p className="text-muted-foreground mb-8 mt-3 text-sm">
+            <span className="font-bold">Minimum macOS version:</span> 26.0 (Tahoe)
+        </motion.p>
+         <motion.div
           variants={{
             hidden: { opacity: 0, scale: 0.95 },
             visible: { opacity: 1, scale: 1 },
@@ -68,7 +72,7 @@ export function DownloadSection() {
                 className="inline-flex items-center gap-2"
               >
                 <Github className="size-4" />
-                GitHub
+                Contribute on GitHub
               </a>
             </Button>
           </motion.div>
