@@ -1,52 +1,31 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
-import { ArrowRight, Download, Github } from "lucide-react";
+import { ArrowRight, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { VantaTrunkBackground } from "./VantaTrunkBackground";
-import { CommandDisplay } from "@/components/ui/command-display";
 import { Button } from "../ui/button";
+import { ParallaxSection } from "./ParallaxSection";
 
 export function HeroSection() {
   const [chaos, setChaos] = useState(1.5);
-  const installCommand = "curl -fsSL https://converge-focus.vercel.app/install | bash";
 
   const handleScrollDown = () => {
     if (typeof window === "undefined") return;
 
-    const startY = window.scrollY;
-    const targetY = startY + window.innerHeight;
-    const distance = targetY - startY;
-    const duration = 600;
-    const startTime = performance.now();
+    const nextSection = document.querySelector<HTMLElement>(
+      '[data-section="how-it-works"]'
+    );
 
-    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
-
-    const animate = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = easeOutCubic(progress);
-
-      window.scrollTo(0, startY + distance * easedProgress);
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-
-    requestAnimationFrame(animate);
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <section
-      className={cn(
-        "relative flex min-h-svh flex-col items-center justify-center gap-6 overflow-hidden px-4 py-16 text-center",
-        "sm:gap-8 sm:py-24 md:py-32"
-      )}
-    >
-      <VantaTrunkBackground chaos={chaos} />
+    <ParallaxSection id="hero" data-section="hero" backgroundComponent={<VantaTrunkBackground chaos={chaos} />}>
       <motion.div
         className="absolute top-4 right-4 z-20 sm:top-6 sm:right-6"
         initial={{ opacity: 0, y: -10 }}
@@ -69,7 +48,7 @@ export function HeroSection() {
           GitHub
         </motion.a>
       </motion.div>
-      <div className="relative z-10 flex flex-col items-center justify-center gap-6 sm:gap-8">
+      <div className="relative z-10 flex flex-col items-center justify-center gap-6 text-center sm:gap-8">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -103,13 +82,13 @@ export function HeroSection() {
           onHoverEnd={() => setChaos(1.5)}
         >
           <Button
-            className="inline-flex cursor-pointer items-center gap-2"
+            className="inline-flex cursor-pointer items-center gap-2 transition-all duration-500 hover:scale-110"
             onClick={handleScrollDown}
           >
             Focus <ArrowRight className="size-4" />
           </Button>
         </motion.div>
       </div>
-    </section>
+    </ParallaxSection>
   );
 }

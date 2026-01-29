@@ -162,7 +162,7 @@ export function VantaTrunkBackground({
       <div
         ref={containerRef}
         id="vanta-trunk-root"
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 -z-10"
         aria-hidden
       />
     </>

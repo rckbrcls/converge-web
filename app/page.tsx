@@ -6,7 +6,7 @@ import { DownloadSection } from "@/components/landing/DownloadSection";
 
 export default function Page() {
   return (
-    <main>
+    <main className="h-svh snap-y snap-mandatory overflow-y-scroll scroll-smooth">
       <HeroSection />
       <HowItWorksSection />
       <ScreenshotsSection />

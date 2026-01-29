@@ -32,17 +32,13 @@ export function CommandDisplay({ command, className }: CommandDisplayProps) {
     >
       <code className="flex-1 select-all text-foreground">{command}</code>
       <Button
-
         size="icon"
         onClick={handleCopy}
-        className="shrink-0"
+        className="shrink-0 cursor-pointer transition-all duration-500 hover:scale-110"
         aria-label="Copy command"
       >
-        {copied ? (
-          <Check className="size-4 text-green-600" />
-        ) : (
-          <Copy className="size-4" />
-        )}
+        <Check className={cn("size-4 text-white", !copied && "hidden")} />
+        <Copy className={cn("size-4", copied && "hidden")} />
       </Button>
     </div>
   );
