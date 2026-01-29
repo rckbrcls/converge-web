@@ -44,7 +44,7 @@ export function ParallaxSection({
     <section
       ref={sectionRef}
       className={cn(
-        "relative flex min-h-screen md:snap-start items-center justify-center overflow-hidden py-16",
+        "relative flex min-h-svh md:snap-start items-center justify-center overflow-hidden py-16",
         "sm:py-24 md:py-32",
         !fullWidth && "px-4",
         className

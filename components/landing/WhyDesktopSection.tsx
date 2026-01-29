@@ -68,7 +68,7 @@ export function WhyDesktopSection() {
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}
-                  className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-destructive/10 text-destructive"
+                  className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary"
                 >
                   <Smartphone className="size-5" />
                 </motion.div>

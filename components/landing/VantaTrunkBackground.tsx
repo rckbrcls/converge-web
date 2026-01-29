@@ -24,7 +24,7 @@ function mobileCheck(): boolean {
 
 export function VantaTrunkBackground({
   chaos = 1.0,
-  color = 0xff0000,
+  color = 0x3366bf,
   backgroundColor = 0xffffff,
 }: VantaTrunkBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null);
