@@ -1,64 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Download, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
-
-interface ReleaseInfo {
-  url: string;
-  version?: string;
-  source?: string;
-}
+import { CommandDisplay } from "@/components/ui/command-display";
 
 export function DownloadSection() {
-  const [downloadUrl, setDownloadUrl] = useState<string | null>(
-    process.env.NEXT_PUBLIC_DMG_DOWNLOAD_URL || null
-  );
-  const [version, setVersion] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    // If URL is already configured, no need to fetch
-    if (process.env.NEXT_PUBLIC_DMG_DOWNLOAD_URL) {
-      return;
-    }
-
-    // Fetch latest version from API
-    let cancelled = false;
-
-    const fetchRelease = async () => {
-      setIsLoading(true);
-      try {
-        const res = await fetch("/api/releases?type=latest");
-        if (res.ok) {
-          const data: ReleaseInfo = await res.json();
-          if (!cancelled) {
-            setDownloadUrl(data.url);
-            if (data.version) {
-              setVersion(data.version);
-            }
-          }
-        }
-      } catch (error) {
-        if (!cancelled) {
-          console.error("Error fetching latest release:", error);
-          // Keep current state (no URL = button disabled)
-        }
-      } finally {
-        if (!cancelled) {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    fetchRelease();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const installCommand = "curl -fsSL https://converge-focus.vercel.app/install | bash";
 
   return (
     <motion.section
@@ -88,12 +37,7 @@ export function DownloadSection() {
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         className="mb-8 text-muted-foreground"
       >
-        macOS only. Drag the app to Applications after opening the DMG.
-        {version && (
-          <span className="block mt-2 text-sm">
-            Latest version: {version}
-          </span>
-        )}
+        Install Converge on macOS using the command below. The script will automatically download and install the latest version.
       </motion.p>
       <motion.div
         variants={{
@@ -101,36 +45,13 @@ export function DownloadSection() {
           visible: { opacity: 1, scale: 1 },
         }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
-        className="flex flex-col gap-4 sm:flex-row sm:gap-3 sm:items-center sm:justify-center"
+        className="flex w-full max-w-2xl flex-col gap-4"
       >
-        {downloadUrl ? (
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button asChild size="lg">
-              <a
-                href={downloadUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2"
-              >
-                <Download className="size-4" />
-                Download Converge (DMG)
-              </a>
-            </Button>
-          </motion.div>
-        ) : (
-          <motion.div>
-            <Button size="lg" disabled={isLoading}>
-              <Download className="size-4" />
-              {isLoading ? "Checking for updates..." : "Download coming soon"}
-            </Button>
-          </motion.div>
-        )}
+        <CommandDisplay command={installCommand} />
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          className="flex justify-center"
         >
           <Button asChild size="lg" variant="outline">
             <a
