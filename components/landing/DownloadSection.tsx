@@ -66,7 +66,7 @@ export function DownloadSection() {
           >
             <Button asChild size="lg" variant="outline">
               <a
-                href="https://github.com/rckbrcls/converge"
+                href="https://github.com/polterware/converge"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2"
@@ -96,7 +96,7 @@ export function DownloadSection() {
           </a>
           {" · "}
           <a
-            href="https://github.com/rckbrcls/converge"
+            href="https://github.com/polterware/converge"
             target="_blank"
             rel="noopener noreferrer"
             className="underline transition-colors hover:text-foreground"

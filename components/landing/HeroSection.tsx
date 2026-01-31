@@ -33,7 +33,7 @@ export function HeroSection() {
         transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}
       >
         <motion.a
-          href="https://github.com/rckbrcls/converge"
+          href="https://github.com/polterware/converge"
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
