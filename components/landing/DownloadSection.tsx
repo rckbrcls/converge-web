@@ -8,7 +8,7 @@ import { CommandDisplay } from "@/components/ui/command-display";
 import { ParallaxSection } from "./ParallaxSection";
 
 export function DownloadSection() {
-  const installCommand = "curl -fsSL https://converge-focus.vercel.app/install | bash";
+  const installCommand = "curl -fsSL https://converge.polterware.com/install | bash";
 
   return (
     <ParallaxSection
