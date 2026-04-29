@@ -87,12 +87,12 @@ export function DownloadSection() {
         >
           Made by{" "}
           <a
-            href="https://www.polterware.com"
+            href="https://erickbarcelos.com"
             target="_blank"
             rel="noopener noreferrer"
             className="underline transition-colors hover:text-foreground"
           >
-            polterware
+            Erick Barcelos
           </a>
           {" · "}
           <a
