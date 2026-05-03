@@ -1,43 +1,55 @@
-This is the institutional landing page for [Converge](https://github.com/your-org/pomodoro), a Pomodoro app for macOS.
+# Converge Web
 
-## Getting Started
+> **Status:** Active
+> This project is currently maintained as the public web surface for Converge.
 
-Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_DMG_DOWNLOAD_URL` to your DMG download URL (e.g. GitHub Releases) so the download buttons work.
+Landing and download site for Converge, a native macOS Pomodoro app built for focused work.
 
-```bash
-cp .env.example .env.local
-# Edit .env.local and set NEXT_PUBLIC_DMG_DOWNLOAD_URL
+## Summary
+
+- [What it is](#what-it-is)
+- [Goals](#goals)
+- [Page structure](#page-structure)
+- [Project map](#project-map)
+- [Current state](#current-state)
+- [Working notes](#working-notes)
+
+## What it is
+
+`converge-web` is the public site that explains Converge and points users to the macOS download. It is separate from the native app so product marketing, screenshots, and install routing can evolve without touching the desktop codebase.
+
+## Goals
+
+- Present Converge as a calm desktop-first focus tool.
+- Explain why a native macOS Pomodoro app is useful.
+- Show screenshots and product flow.
+- Expose a download route that can be backed by GitHub Releases or another DMG URL.
+
+## Page structure
+
+- Hero with interactive visual background.
+- How-it-works section for the focus flow.
+- Screenshots section for product proof.
+- Desktop rationale section.
+- Download section and install route.
+
+## Project map
+
+```text
+converge-web/
+├── app/                # Next.js routes, layout, and install route
+├── components/landing/ # Hero, screenshots, download, and explanatory sections
+├── components/ui/      # UI primitives
+├── lib/                # Shared utilities
+└── package.json
 ```
 
-Then run the development server:
+## Current state
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The site is a focused Next.js landing page. It still needs `NEXT_PUBLIC_DMG_DOWNLOAD_URL` configured to make download buttons point at the right release artifact.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Working notes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Keep the site aligned with the native app in `converge/converge-desktop` or `converge-rckbrcls`.
+- Do not describe unreleased desktop features as shipped.
+- Keep the download URL externalized through environment configuration.

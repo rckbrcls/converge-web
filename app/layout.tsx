@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title: "Converge | Pomodoro for Mac",
   description:
     "Native Pomodoro for macOS. Timer, statistics and real focus — on Mac, away from your phone.",
+  other: {
+    google: "notranslate",
+  },
 };
 
 export default function RootLayout({
@@ -33,6 +36,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en" className={`${inter.variable} dark`}>
       <body
+        translate="no"
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
         {children}
