@@ -7,25 +7,24 @@ Landing and download site for Converge, a native macOS Pomodoro app built for fo
 
 ## Summary
 
-- [What it is](#what-it-is)
-- [Goals](#goals)
-- [Page structure](#page-structure)
-- [Project map](#project-map)
-- [Current state](#current-state)
-- [Working notes](#working-notes)
+- Next.js public website for Converge, the native macOS Pomodoro app.
+- Solves product explanation, download routing, install command presentation, screenshots, and marketing/support copy.
+- Main stack: Next.js, React, TypeScript, landing-page sections, public assets, and project metadata.
+- Current status: active web companion to the desktop app.
+- Technical value: keeps download and product-copy concerns separate from the SwiftUI desktop app.
 
-## What it is
+## Overview
 
 `converge-web` is the public site that explains Converge and points users to the macOS download. It is separate from the native app so product marketing, screenshots, and install routing can evolve without touching the desktop codebase.
 
-## Goals
+## Motivation
 
 - Present Converge as a calm desktop-first focus tool.
 - Explain why a native macOS Pomodoro app is useful.
 - Show screenshots and product flow.
 - Expose a download route that can be backed by GitHub Releases or another DMG URL.
 
-## Page structure
+## Features
 
 - Hero with interactive visual background.
 - How-it-works section for the focus flow.
@@ -33,7 +32,7 @@ Landing and download site for Converge, a native macOS Pomodoro app built for fo
 - Desktop rationale section.
 - Download section and install route.
 
-## Project map
+## Project Structure
 
 ```text
 converge-web/
@@ -44,11 +43,11 @@ converge-web/
 └── package.json
 ```
 
-## Current state
+## Current Status
 
 The site is a focused Next.js landing page. It still needs `NEXT_PUBLIC_DMG_DOWNLOAD_URL` configured to make download buttons point at the right release artifact.
 
-## Working notes
+## Known Limitations
 
 - Keep the site aligned with the native app in `converge/converge-desktop` or `converge-rckbrcls`.
 - Do not describe unreleased desktop features as shipped.
